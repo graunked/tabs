@@ -1,18 +1,13 @@
 <fa-app style="width: 100%; height: 100%;">
 
-  <fa-modifier fa-translate="[0, 200, 0]">
+  <fa-modifier fa-translate="[200, 200, 0]">
+    <wiggle play="play">
 
-    <fa-scroll-view export-distance-function fa-options="{direction: 0, paginated: true}" fa-pipe-from="scrollEvents" fa-start-index="0" ng-controller="ScrollCtrl">
+      <fa-surface fa-size="[200,200]" fa-background-color="'red'"  fa-pipe-to="scrollEvents">
+        <div style="font-size: 100px; color: white; text-align: center; line-height: 200px; font-family: sans-serif;"></div>
+      </fa-surface>
 
-      <fa-modifier ng-repeat="color in colors" fa-scale="scale(distance($index))" >
-        <fa-modifier fa-size="[120, 200 * scale(distance($index))[0]]" fa-translate="translate(distance($index))" fa-rotate-z="rotate(distance($index))" fa-align="[0.5, 0.5]" fa-origin="[0.5, 0.5]">
-          <fa-surface fa-size="[undefined,200]" fa-background-color="color"  fa-pipe-to="scrollEvents">
-            <div style="font-size: 100px; color: white; text-align: center; line-height: 200px; font-family: sans-serif;">{{$index}}</div>
-          </fa-surface>
-        </fa-modifier>
-      </fa-modifier>
-
-    </fa-scroll-view>
+    </wiggle>
 
   </fa-modifier>
 

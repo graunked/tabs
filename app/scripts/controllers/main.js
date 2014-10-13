@@ -7,7 +7,17 @@ angular.module('scrollviewTestApp')
 
     $scope.scrollEvents = new EventHandler();
 
-    $scope.colors = _.map(_.range(50), randomColor);
+    var playWiggle = function() {
+      $scope.play = false;
+      $scope.$digest();
+      $scope.play = true;
+      $scope.$digest();
+    };
 
+    document.addEventListener("keypress", function(e) {
+      if (e.which === 13) {
+        playWiggle();
+      }
+    });
 
   });
