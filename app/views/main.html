@@ -1,13 +1,28 @@
-<fa-app style="width: 100%; height: 100%;">
+<fa-app style="width: 100%; height: 100%; position: absolute;" fa-pipe-to="scrollEvents">
 
-  <fa-modifier fa-translate="[200, 200, 0]">
-    <wiggle play="play">
+  <fa-modifier  fa-translate="[xTranslate(timeline($index)), 0, zTranslate(timeline($index))]" fa="[0.5, 0.5]" fa-size="[width(), undefined]" fa-opacity="opacity(timeline($index))" ng-repeat="tab in tabs">
+    <fa-surface fa-size="[undefined, undefined]">
+      <div style="background: url(images/{{tab}}.jpg) no-repeat center center fixed; position: absolute; width: 100%; height: 100%;">
+      </div>
+    </fa-surface>
+  </fa-modifier>
 
-      <fa-surface fa-size="[200,200]" fa-background-color="'red'"  fa-pipe-to="scrollEvents">
-        <div style="font-size: 100px; color: white; text-align: center; line-height: 200px; font-family: sans-serif;"></div>
-      </fa-surface>
+  <fa-modifier fa-size="[undefined, 40]" fa-translate="[0, 0, 10]">
 
-    </wiggle>
+    <fa-grid-layout fa-options="{dimensions: [3, 1]}">
+
+      <fa-modifier ng-repeat="tab in tabs">
+        <fa-surface fa-size="[undefined, 40]">
+          <div style="background: url(images/{{tab}}.jpg) no-repeat center center fixed; position: absolute; width: 100%; height: 100%;">
+          </div>
+        </fa-surface>
+        <fa-modifier fa-opacity="tabOpacity(timeline($index))">
+          <fa-surface fa-size="[undefined, 40]" fa-click="goTo($index)" fa-background-color="'black'">
+          </fa-surface>
+        </fa-modifier>
+      </fa-modifier>
+
+    </fa-grid-layout>
 
   </fa-modifier>
 
